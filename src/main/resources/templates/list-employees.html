@@ -24,6 +24,10 @@
       <td th:text="${emp.name}"></td>
       <td th:text="${emp.email}"></td>
       <td th:text="${emp.department}"></td>
+      <td>
+        <a th:href="@{/showUpdateForm(employeeId=${emp.id})}" class="btn btn-primary">Update</a>
+        <a th:href="@{/deleteEmployee(employeeId=${emp.id})}" class="btn btn-danger ml-2">Delete</a>
+      </td>
 
     </tr>
     </tbody>

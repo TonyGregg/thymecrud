@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -38,5 +39,22 @@ public class EmpController {
     return modelAndView;
 
   }
+
+  @GetMapping("/showUpdateForm")
+  public ModelAndView showUpdateForm(@RequestParam Long employeeId) {
+    ModelAndView modelAndView = new ModelAndView("add-employee-form");
+    final Employee employee = empRepo.findById(employeeId).get();
+    modelAndView.addObject("employee", employee);
+    return modelAndView;
+  }
+
+
+  @GetMapping("/deleteEmployee")
+  public String deleteEmployee(@RequestParam Long employeeId) {
+    empRepo.deleteById(employeeId);
+    return "redirect:/list";
+  }
+
+
 
 }
